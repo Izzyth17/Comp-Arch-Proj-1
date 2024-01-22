@@ -1,0 +1,32 @@
+def build_instruction(opcode, Rd, Rs1, Rs2, immed):
+    instr = opcode << 28
+    if Rd is not None:
+        instr = instr + (Rd << 24)
+    if Rs1 is not None:
+        instr = instr + (Rs1 << 20)
+    if Rs2 is not None:
+        instr = instr + (Rs2 << 16)
+    if immed is not None:
+        instr = instr + immed
+    return instr
+
+NOOP = 0
+ADD = 1
+ADDI = 2
+BEQ = 3
+JAL = 4
+LW = 5
+SW = 6
+RETURN = 7
+
+i0 = build_instruction(NOOP, None, None, None, None)
+i1 = build_instruction(ADDI, R1, R0, None, 8)
+i2 = build_instruction(ADDI, R2, R0, None, 7)
+i3 = build_instruction(ADD, R3, R1, R1, None)
+i4 = build_instruction(ADD, R4, R2, R2, None)
+i5 = build_instruction(BEQ, None, R3, R4, 3)
+i6 = build_instruction(ADDI, R8, R0, None, 10)
+i7 = build_instruction(JAL, R0, None, None, 2)
+i8 = build_instruction(ADDI, R8, R0, None, 1000)
+i9 = build_instruction(SW, None, R2, R8, 16)
+i10 = build_instruction(LW, R5, R8, None, 16)
