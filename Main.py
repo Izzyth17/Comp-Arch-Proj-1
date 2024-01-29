@@ -1,5 +1,5 @@
-import CPU
-import Instruction
+from CPU import CPU
+from Instruction import Instruction
 
 NOOP = 0
 ADD = 1
@@ -23,6 +23,7 @@ def build_instruction(opcode, Rd, Rs1, Rs2, immed):
     return instr
 
 cpu = CPU()
+print(cpu.regs[1])
 
 
 i0 = build_instruction(NOOP, None, None, None, None)
